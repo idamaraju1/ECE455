@@ -1,34 +1,22 @@
-/*
-Task. Spawn N threads. Each thread prints "Hello from thread X of N" where X is the thread’s ID (0-based). Join all threads.
-
-Hints
-Pass the thread ID as a function argument; store threads in a std::vector<std::thread> and call join() on each.
-*/
-
 #include <iostream>
 #include <thread>
 #include <vector>
 
+void hello(int id, int total) {
+    std::cout << "Hello from thread " << id << " of " << total << "\n";
+}
+
 int main() {
-    const int N = 10; // Number of threads
+    const int N = 5;
     std::vector<std::thread> threads;
+    threads.reserve(N);
 
-    // Lambda function to be executed by each thread
-    auto print_hello = [](int thread_id, int total_threads) {
-        std::cout << "Hello from thread " << thread_id << " of " << total_threads << std::endl;
-    };
+    for (int i = 0; i < N; ++i)
+        threads.emplace_back(hello, i, N);
 
-    // Spawn N threads
-    for (int i = 0; i < N; ++i) {
-        threads.emplace_back(print_hello, i, N);
-    }
-
-    // Join all threads
-    for (auto& th : threads) {
-        th.join();
-    }
+    for (auto &t : threads) 
+        t.join();
 
     return 0;
 }
-
 
