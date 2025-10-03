@@ -10,7 +10,7 @@ __global__ void print_indices() {
 
 int main() {
     dim3 grid(2, 2);
-    dim3 block(4, 4);
+    dim3 block(2, 3);
     print_indices<<<grid, block>>>();
     cudaDeviceSynchronize();
     return 0;
