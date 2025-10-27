@@ -1,0 +1,11 @@
+Running Shared-Memory Reduction (N = 16777216)...
+Computing CPU reference...
+CPU Result: 838787180
+GPU Result: 838787180
+Difference: 0
+Validation PASSED.
+
+--- Performance ---
+CPU time: 95.33156 ms
+GPU avg kernel time (3 runs): 0.31468 ms
+Speedup (CPU / GPU): 302.95021x
